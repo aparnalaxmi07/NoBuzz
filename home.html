@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoBuzz - Smart Window Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #f3f4f6;
+            --light-accent: #e5e7eb;
+            --text: #111827;
+            --text-light: #6b7280;
+            --highlight: #2563eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--secondary);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--highlight);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+                        url('https://www.dakowindows.com/uploads/p/9/9/3/6/brd/the-best-windows-for-natural-light-dako-windows-the-best-windows.webp') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--secondary);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--highlight);
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-info p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .features-section {
+            background-color: var(--accent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        .testimonials-section {
+            background-color: var(--light-accent);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+        }
+
+        .author-info p {
+            font-style: normal;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .demo-form {
+            background-color: var(--secondary);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-accent);
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--highlight);
+        }
+
+        .footer {
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--secondary);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .map-container {
+            height: 400px;
+            margin-top: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--highlight);
+        }
+
+        .contact-text h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .demo-form {
+                padding: 20px;
+            }
+        }
+
+        /* Custom checkbox styles */
+        .custom-checkbox {
+            display: inline-block;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: var(--secondary);
+            border: 1px solid var(--light-accent);
+            border-radius: 4px;
+        }
+
+        .custom-checkbox:hover input ~ .checkmark {
+            background-color: var(--accent);
+        }
+
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: var(--highlight);
+            border-color: var(--highlight);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .custom-checkbox .checkmark:after {
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: var(--secondary);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            position: relative;
+            animation: modalopen 0.3s;
+        }
+
+        @keyframes modalopen {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">NoBuzz</a>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#features">Features</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>No Buzz. No Glare. Just Comfort.</h1>
+            <p>Transform your windows with our smart solutions for a peaceful, bug-free living space</p>
+            <div class="btn-group">
+                <a href="#products" class="btn">Explore Products</a>
+                <a href="#demo" class="btn btn-outline">Book a Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Smart Window Solutions</h2>
+                <p>Designed for modern living with cutting-edge technology and seamless integration</p>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D12AQGGM1NWp6Nnig/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1714972096695?e=1758758400&v=beta&t=s7wrBRzeZGk8SSbifskv8M8d9s-j43Gj6AgY4_LB18A" alt="Modern black remote-controlled curtains installed in a contemporary living room">
+                    </div>
+                    <div class="product-info">
+                        <h3>Remote-Controlled Curtains</h3>
+                        <p>Control your curtains with ease from anywhere in the room or through our mobile app.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2023/4/300089843/OG/CJ/KM/83660651/mesh-magnetic-mosquito-net-1000x1000.jpg" alt="Nearly invisible magnetic mosquito net installed on a large window">
+                    </div>
+                    <div class="product-info">
+                        <h3>Magnetic Mosquito Nets</h3>
+                        <p>Discreet, durable protection against insects without compromising your view.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://content.blinds-2go.co.uk/content/product-images/totalshade-charcoal-54-blackout-pleated-1.jpg?width=1132" alt="Blackout blinds completely blocking sunlight in a bedroom setting">
+                    </div>
+                    <div class="product-info">
+                        <h3>Blackout Blinds</h3>
+                        <p>Perfect sleep solution with complete light blockage and temperature regulation.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose NoBuzz?</h2>
+                <p>Our commitment to quality and innovation sets us apart in smart window solutions</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Easy Installation</h3>
+                    <p>Our products are designed for quick setup without professional help and minimal tools required.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Smart Technology</h3>
+                    <p>Control your window treatments with your smartphone or voice assistants like Alexa.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">😴</div>
+                    <h3>Peaceful Living</h3>
+                    <p>Enjoy bug-free evenings and perfect lighting control for ultimate home comfort.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Hear from homeowners who transformed their living spaces with NoBuzz solutions</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"The magnetic mosquito nets were a game-changer for our patio. We can finally enjoy summer evenings without the bugs!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://placehold.co/100x100" alt="Portrait of Sarah J., a satisfied NoBuzz customer">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah J.</h4>
+                            <p>Homeowner, New York</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The automated blackout blinds help my baby sleep through the night. Worth every penny for the sleep I'm getting!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://placehold.co/100x100" alt="Portrait of Michael T., a satisfied NoBuzz customer">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael T.</h4>
+                            <p>Parent, Chicago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Modern look with smart functionality. My remote-controlled curtains get compliments from all my guests."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://placehold.co/100x100" alt="Portrait of Priya K., a satisfied NoBuzz customer">
+                        </div>
+                        <div class="author-info">
+                            <h4>Priya K.</h4>
+                            <p>Interior Designer, San Francisco</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Form Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Book a Free Demo</h2>
+                <p>Experience our smart window solutions in your home with no obligation</p>
+            </div>
+            <div class="demo-form">
+                <form id="demoForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Product of Interest</label>
+                        <select id="product" name="product" required>
+                            <option value="">Select a Product</option>
+                            <option value="curtains">Remote-Controlled Curtains</option>
+                            <option value="nets">Magnetic Mosquito Nets</option>
+                            <option value="blinds">Blackout Blinds</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="consent" required>
+                            <span class="checkmark"></span>
+                            I agree to receive information about NoBuzz products and services
+                        </label>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Book Demo Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>NoBuzz</h3>
+                    <p>Redefining comfort through smart window solutions for modern living spaces.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Instagram">i</a>
+                        <a href="#" aria-label="Twitter">t</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Remote-Controlled Curtains</a></li>
+                        <li><a href="#">Magnetic Mosquito Nets</a></li>
+                        <li><a href="#">Blackout Blinds</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Installation Guide</a></li>
+                        <li><a href="#">Returns & Warranty</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 NoBuzz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="#" class="whatsapp-btn" aria-label="Chat with us on WhatsApp">w</a>
+
+    <!-- Product Pages Content (hidden by default) -->
+    <div id="productPages" style="display: none;">
+        <!-- Product 1 Page -->
+        <section id="remote-curtains" class="product-page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Remote-Controlled Curtains</h2>
+                </div>
+                <div class="product-detail">
+                    <div class="product-img">
+                        <img src="https://placehold.co/800x500" alt="Full installation of remote-controlled curtains in multiple rooms">
+                    </div>
+                    <div class="product-description">
+                        <h3>Seamless Automation for Your Windows</h3>
+                        <p>Our remote-controlled curtain system brings modern convenience to your home. With whisper-quiet motors and versatile control options, you can adjust your lighting and privacy with the touch of a button.</p>
+                        
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Wi-Fi enabled for smartphone control</li>
+                            <li>Compatible with smart home systems</li>
+                            <li>Customizable scheduling options</li>
+                            <li>Battery-powered or hardwired options</li>
+                            <li>Various fabric and style choices</li>
+                        </ul>
+                        
+                        <h4>Specifications:</h4>
+                        <ul>
+                            <li><strong>Material:</strong> High-quality polyester blends</li>
+                            <li><strong>Control Options:</strong> Remote, App, Voice</li>
+                            <li><strong>Installation Time:</strong> Under 2 hours</li>
+                            <li><strong>Warranty:</strong> 5 years</li>
+                        </ul>
+                        
+                        <a href="#demo" class="btn">Book a Demo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product 2 Page -->
+        <section id="mosquito-nets" class="product-page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Magnetic Mosquito Nets</h2>
+                </div>
+                <div class="product-detail">
+                    <div class="product-img">
+                        <img src="https://placehold.co/800x500" alt="Nearly invisible mosquito net installation process">
+                    </div>
+                    <div class="product-description">
+                        <h3>Effective Protection Without Compromise</h3>
+                        <p>Our magnetic mosquito nets provide discreet yet powerful defense against insects while maintaining your view and airflow. The innovative magnetic closure system ensures easy operation while keeping bugs out.</p>
+                        
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Nearly invisible mesh material</li>
+                            <li>Strong rare-earth magnets</li>
+                            <li>Durable aluminum frames</li>
+                            <li>Easy to use one-handed</li>
+                            <li>Custom sizes available</li>
+                        </ul>
+                        
+                        <h4>Specifications:</h4>
+                        <ul>
+                            <li><strong>Mesh Material:</strong> Fiberglass with PVC coating</li>
+                            <li><strong>Frame Options:</strong> White, Black, Silver</li>
+                            <li><strong>Installation Time:</strong> 30-60 minutes per window</li>
+                            <li><strong>Warranty:</strong> Lifetime</li>
+                        </ul>
+                        
+                        <a href="#demo" class="btn">Book a Demo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product 3 Page -->
+        <section id="blackout-blinds" class="product-page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Blackout Blinds</h2>
+                </div>
+                <div class="product-detail">
+                    <div class="product-img">
+                        <img src="https://placehold.co/800x500" alt="Blackout blinds fully extended showing light blockage">
+                    </div>
+                    <div class="product-description">
+                        <h3>Total Darkness When You Need It</h3>
+                        <p>Our blackout blinds create a sleep-optimized environment by completely eliminating outside light. With optional smart features, you can program them to gradually open in the morning for a natural wake-up experience.</p>
+                        
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>100% light blockage</li>
+                            <li>Noise-reducing fabric</li>
+                            <li>Thermal insulation</li>
+                            <li>Auto-scheduling options</li>
+                            <li>Child-safe design</li>
+                        </ul>
+                        
+                        <h4>Specifications:</h4>
+                        <ul>
+                            <li><strong>Material:</strong> Multi-layered composite fabric</li>
+                            <li><strong>Control Options:</strong> Manual, Remote, Smart</li>
+                            <li><strong>Installation Time:</strong> 60-90 minutes</li>
+                            <li><strong>Warranty:</strong> 10 years</li>
+                        </ul>
+                        
+                        <a href="#demo" class="btn">Book a Demo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact-page" class="contact-page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>We'd love to hear from you about our smart window solutions</p>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-text">
+                            <h4>Email Us</h4>
+                            <p>info@nobuzz.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <h4>Call Us</h4>
+                            <p>+1 (800) 555-0199</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🏢</div>
+                        <div class="contact-text">
+                            <h4>Visit Us</h4>
+                            <p>123 Smart Way, Silicon Valley, CA 94025</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.6392906210636!2d-122.08624618468875!3d37.422003279823905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fba245074fb87%3A0x38dfb259423427d9!2sGoogleplex!5e0!3m2!1sen!2sus!4v1623683739976!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                
+                <div class="contact-form" style="margin-top: 40px;">
+                    <h3 style="margin-bottom: 20px; text-align: center;">Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contact-name">Name</label>
+                            <input type="text" id="contact-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-subject">Subject</label>
+                            <input type="text" id="contact-subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div id="demoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 style="margin-bottom: 20px;">Thank You!</h2>
+            <p>Your demo request has been submitted successfully. Our representative will contact you within 24 hours to schedule your appointment.</p>
+            <button id="modalClose" class="btn" style="margin-top: 30px;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Demo Form Submission
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, you would send the form data to your server here
+            // For this demo, we'll just show a success message
+            document.getElementById('demoModal').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Modal Close Functionality
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.getElementById('demoModal').style.display = 'none';
+        });
+
+        document.getElementById('modalClose').addEventListener('click', function() {
+            document.getElementById('demoModal').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target == document.getElementById('demoModal')) {
+                document.getElementById('demoModal').style.display = 'none';
+            }
+        });
+
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu if open
+                const navLinks = document.querySelector('.nav-links');
+                if (window.getComputedStyle(navLinks).display === 'flex') {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Products Page Navigation Logic
+        // This would be handled by your backend router in a real application
+        function showProductPage(productId) {
+            document.getElementById('productPages').style.display = 'block';
+            document.querySelectorAll('.product-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            document.getElementById(productId).style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // Simulate page navigation - in a real app this would be server-side routing
+        if (window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            if (['remote-curtains', 'mosquito-nets', 'blackout-blinds', 'contact-page'].includes(hash)) {
+                showProductPage(hash);
+            }
+        }
+    </script>
+</body>
+</html>
